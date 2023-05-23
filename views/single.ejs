@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+    <%- include("./patern/head.ejs") %>
+<body>
+    <%- include("./patern/navigation.ejs") %>
+<div class="content details">
+    <% if(data){ %>
+        <h2> <%= data.title %></h2>
+        <div>
+            <p>
+                <%= data.body %>
+            </p>
+        </div>
+        <div class="edit">
+            <a class="delete" data-doc="<%= data.id %>">delete</a>
+            <a class="update" href="/update/<%-data.id%>">update</a>
+            <!-- <button class="update" data-doc="<%= data.id %>">update</button> -->
+        </div>
+        <div class="updateForm">
+            <form></form>
+        </div>
+    <% } else { %>
+        <div>sorry there is no information</div>
+    <% } %>
+</div>
+ 
+<script>
+    let del = document.querySelector(".delete");
+    del.addEventListener("click" , (e)=>{
+        let endPoint = `/deleteBlogs/${del.dataset.doc}`; 
+        fetch(endPoint , {method : "DELETE"})
+        .then(res=> res.json())
+        .then(data=>location.assign(data.redirect))
+    })
+</script> 
+
+    <%- include("./patern/footer.ejs") %>
+</body>
+</html>

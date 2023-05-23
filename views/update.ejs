@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+    <%- include("./patern/head.ejs") %>
+<body>
+    <%- include("./patern/navigation.ejs") %>
+    <div class="create-blog content">
+        <h2>update</h2>
+        <form action="/blogsUpdate/<%= data.id %>" method="POST">
+            <label for="title">Blog title</label>
+            <input type="text" id="title" name="title" value="<%=data.title%>" value required>
+            <label for="snippet">Blog snippet</label>
+            <input type="text" id="snippet" name="snippet" value="<%=data.snippet %>" required>
+            <label for="body">Blog body</label>
+            <input type="text" id="body" name="body" value="<%=data.body %>" required>
+            <button>submit</button>
+        </form>
+    </div>
+    
+    <%- include("./patern/footer.ejs") %>
+</body>
+</html>
